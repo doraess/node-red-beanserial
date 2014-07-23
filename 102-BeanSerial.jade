@@ -1,0 +1,69 @@
+script(type='text/x-red', data-template-name='Bean Serial')
+  .form-row
+    label(for='node-input-command')
+        i.icon-tasks
+        | Command
+    select#node-input-command(placeholder='command')
+      option(value="") Select command
+      option(value='MSG_ID_SERIAL_DATA') MSG_ID_SERIAL_DATA
+      option(value='MSG_ID_BT_SET_ADV') MSG_ID_BT_SET_ADV
+      option(value='MSG_ID_BT_SET_CONN') MSG_ID_BT_SET_CONN
+      option(value='MSG_ID_BT_SET_LOCAL_NAME') MSG_ID_BT_SET_LOCAL_NAME
+      option(value='MSG_ID_BT_SET_PIN') MSG_ID_BT_SET_PIN
+      option(value='MSG_ID_BT_SET_TX_PWR') MSG_ID_BT_SET_TX_PWR
+      option(value='MSG_ID_BT_GET_CONFIG') MSG_ID_BT_GET_CONFIG
+      option(value='MSG_ID_BT_ADV_ONOFF') MSG_ID_BT_ADV_ONOFF
+      option(value='MSG_ID_BT_SET_SCRATCH') MSG_ID_BT_SET_SCRATCH
+      option(value='MSG_ID_BT_GET_SCRATCH') MSG_ID_BT_GET_SCRATCH
+      option(value='MSG_ID_BT_RESTART') MSG_ID_BT_RESTART
+      option(value='MSG_ID_BL_CMD') MSG_ID_BL_CMD
+      option(value='MSG_ID_BL_FW_BLOCK') MSG_ID_BL_FW_BLOCK
+      option(value='MSG_ID_BL_STATUS') MSG_ID_BL_STATUS
+      option(value='MSG_ID_CC_LED_WRITE') MSG_ID_CC_LED_WRITE
+      option(value='MSG_ID_CC_LED_WRITE_ALL') MSG_ID_CC_LED_WRITE_ALL
+      option(value='MSG_ID_CC_LED_READ_ALL') MSG_ID_CC_LED_READ_ALL
+      option(value='MSG_ID_CC_ACCEL_READ') MSG_ID_CC_ACCEL_READ
+      option(value='MSG_ID_CC_ACCEL_READ_RSP') MSG_ID_CC_ACCEL_READ_RSP
+      option(value='MSG_ID_AR_SET_POWER') MSG_ID_AR_SET_POWER
+      option(value='MSG_ID_AR_GET_CONFIG') MSG_ID_AR_GET_CONFIG
+      option(value='MSG_ID_DB_LOOPBACK') MSG_ID_DB_LOOPBACK
+      option(value='MSG_ID_DB_COUNTER') MSG_ID_DB_COUNTER
+      option(value='MSG_ID_CC_TEMP_READ') MSG_ID_CC_TEMP_READ
+    .form-row
+      label(for='node-input-uuid')
+        i.icon-tasks
+        | UUID
+      input#node-input-uuid(type='text', placeholder='UUID')
+    .form-row
+      label(for='node-input-name')
+        i.icon-tag
+        | Name
+      input#node-input-name(type='text', placeholder='Name')
+
+script(type='text/x-red', data-help-name='Bean Serial')
+  p Interacts with a specific Bean Device via serial
+script
+  :coffee
+    RED.nodes.registerType "Bean Serial",
+      category: "advanced-input" # the palette category
+      color: "#0076d6"
+      defaults: # defines the editable properties of the node
+        name: #  along with default values.
+          value: ""
+
+        command:
+          value: ""
+          required: true
+
+        uuid:
+          value: ""
+          required: true
+
+      inputs: 1 # set the number of inputs - only 0 or 1
+      outputs: 1 # set the number of outputs - 0 to n
+      icon: "bluetooth.png" # set the icon (held in public/icons)
+      label: -> # sets the default label contents
+        @name or @topic or "Bean Serial"
+
+      labelStyle: -> # sets the class to apply to the label
+        (if @name then "node_label_italic" else "")

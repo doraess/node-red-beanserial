@@ -1,0 +1,79 @@
+
+<script type="text/x-red" data-template-name="Bean Serial">
+  <div class="form-row">
+    <label for="node-input-command"><i class="icon-tasks"></i>Command</label>
+    <select id="node-input-command" placeholder="command">
+      <option value="">Select command</option>
+      <option value="MSG_ID_SERIAL_DATA">MSG_ID_SERIAL_DATA</option>
+      <option value="MSG_ID_BT_SET_ADV">MSG_ID_BT_SET_ADV</option>
+      <option value="MSG_ID_BT_SET_CONN">MSG_ID_BT_SET_CONN</option>
+      <option value="MSG_ID_BT_SET_LOCAL_NAME">MSG_ID_BT_SET_LOCAL_NAME</option>
+      <option value="MSG_ID_BT_SET_PIN">MSG_ID_BT_SET_PIN</option>
+      <option value="MSG_ID_BT_SET_TX_PWR">MSG_ID_BT_SET_TX_PWR</option>
+      <option value="MSG_ID_BT_GET_CONFIG">MSG_ID_BT_GET_CONFIG</option>
+      <option value="MSG_ID_BT_ADV_ONOFF">MSG_ID_BT_ADV_ONOFF</option>
+      <option value="MSG_ID_BT_SET_SCRATCH">MSG_ID_BT_SET_SCRATCH</option>
+      <option value="MSG_ID_BT_GET_SCRATCH">MSG_ID_BT_GET_SCRATCH</option>
+      <option value="MSG_ID_BT_RESTART">MSG_ID_BT_RESTART</option>
+      <option value="MSG_ID_BL_CMD">MSG_ID_BL_CMD</option>
+      <option value="MSG_ID_BL_FW_BLOCK">MSG_ID_BL_FW_BLOCK</option>
+      <option value="MSG_ID_BL_STATUS">MSG_ID_BL_STATUS</option>
+      <option value="MSG_ID_CC_LED_WRITE">MSG_ID_CC_LED_WRITE</option>
+      <option value="MSG_ID_CC_LED_WRITE_ALL">MSG_ID_CC_LED_WRITE_ALL</option>
+      <option value="MSG_ID_CC_LED_READ_ALL">MSG_ID_CC_LED_READ_ALL</option>
+      <option value="MSG_ID_CC_ACCEL_READ">MSG_ID_CC_ACCEL_READ</option>
+      <option value="MSG_ID_CC_ACCEL_READ_RSP">MSG_ID_CC_ACCEL_READ_RSP</option>
+      <option value="MSG_ID_AR_SET_POWER">MSG_ID_AR_SET_POWER</option>
+      <option value="MSG_ID_AR_GET_CONFIG">MSG_ID_AR_GET_CONFIG</option>
+      <option value="MSG_ID_DB_LOOPBACK">MSG_ID_DB_LOOPBACK</option>
+      <option value="MSG_ID_DB_COUNTER">MSG_ID_DB_COUNTER</option>
+      <option value="MSG_ID_CC_TEMP_READ">MSG_ID_CC_TEMP_READ</option>
+    </select>
+    <div class="form-row">
+      <label for="node-input-uuid"><i class="icon-tasks"></i>UUID</label>
+      <input id="node-input-uuid" type="text" placeholder="UUID"/>
+    </div>
+    <div class="form-row">
+      <label for="node-input-name"><i class="icon-tag"></i>Name</label>
+      <input id="node-input-name" type="text" placeholder="Name"/>
+    </div>
+  </div>
+</script>
+<script type="text/x-red" data-help-name="Bean Serial">
+  <p>Interacts with a specific Bean Device via serial</p>
+</script>
+<script>(function() {
+  RED.nodes.registerType("Bean Serial", {
+    category: "advanced-input",
+    color: "#0076d6",
+    defaults: {
+      name: {
+        value: ""
+      },
+      command: {
+        value: "",
+        required: true
+      },
+      uuid: {
+        value: "",
+        required: true
+      }
+    },
+    inputs: 1,
+    outputs: 1,
+    icon: "bluetooth.png",
+    label: function() {
+      return this.name || this.topic || "Bean Serial";
+    },
+    labelStyle: function() {
+      if (this.name) {
+        return "node_label_italic";
+      } else {
+        return "";
+      }
+    }
+  });
+
+}).call(this);
+
+</script>
